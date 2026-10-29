@@ -38,3 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Frontend tests with Vitest and Testing Library for reducers, selectors, the copy reuse rule and the filter.
 - ADR 0005: live local filter instead of a search button.
 - Continuous integration with GitHub Actions: lint, tests and build for backend and frontend on every pull request, with a disposable PostgreSQL service for backend integration tests.
+
+### Changed
+
+- CORS accepts a comma-separated list of allowed origins, so local development and the deployed frontend can both reach the API.
