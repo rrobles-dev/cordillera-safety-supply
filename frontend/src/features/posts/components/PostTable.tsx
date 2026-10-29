@@ -7,6 +7,9 @@ import {
   selectAllPosts,
   selectPostsError,
   selectPostsStatus,
+  filterChanged,
+  selectFilter,
+  selectFilteredPosts,
   type RejectValue,
 } from '../postsSlice';
 import type { Post } from '../types';
@@ -18,7 +21,9 @@ export function PostTable() {
   const dispatch = useAppDispatch();
   const status = useAppSelector(selectPostsStatus);
   const error = useAppSelector(selectPostsError);
-  const posts = useAppSelector(selectAllPosts);
+  const allPosts = useAppSelector(selectAllPosts);
+  const posts = useAppSelector(selectFilteredPosts);
+  const filter = useAppSelector(selectFilter);
 
   const [postToDelete, setPostToDelete] = useState<Post | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -77,8 +82,15 @@ export function PostTable() {
         </p>
       )}
 
-      {posts.length === 0 ? (
+            {allPosts.length === 0 ? (
         <p className="placeholder">No posts yet. Create the first one below.</p>
+      ) : posts.length === 0 ? (
+        <div className="empty-filter">
+          <p className="placeholder">No posts match "{filter}".</p>
+          <button type="button" className="btn-secondary" onClick={() => dispatch(filterChanged(''))}>
+            Clear filter
+          </button>
+        </div>
       ) : (
         <div className="table-wrapper">
           <table>

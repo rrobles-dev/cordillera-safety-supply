@@ -33,3 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Reusable modal based on the native dialog element.
 - Delete action per post with a confirmation modal that focuses Cancel by default.
 - Posts already deleted by someone else are removed from the view when the API responds with 404.
+- Live, case-insensitive local filter by product with a clear action.
+- "Show existing post" action on duplicate errors, which applies the filter.
+- Frontend tests with Vitest and Testing Library for reducers, selectors, the copy reuse rule and the filter.
+- ADR 0005: live local filter instead of a search button.
