@@ -128,3 +128,120 @@ th {
 .alert p {
   margin: 0 0 8px;
 }
+
+.form {
+  display: grid;
+  gap: 14px;
+}
+
+.field-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.counter {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+input,
+textarea {
+  width: 100%;
+  font: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--color-bg);
+}
+
+.success {
+  margin: 0;
+  color: #2b8a3e;
+}
+
+.modal {
+  border: 0;
+  border-radius: var(--radius);
+  padding: 24px;
+  width: min(480px, calc(100% - 32px));
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+.modal::backdrop {
+  background: rgba(31, 41, 51, 0.5);
+}
+
+.modal h2 {
+  margin: 0 0 16px;
+  font-size: 1.15rem;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.preview {
+  margin: 0;
+}
+
+.preview dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.preview dd {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+}
+
+.warning {
+  border: 1px solid #f08c00;
+  background: #fff9db;
+  border-radius: 6px;
+  padding: 10px 12px;
+}
+
+.warning p {
+  margin: 0 0 8px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.checkbox input {
+  width: auto;
+}

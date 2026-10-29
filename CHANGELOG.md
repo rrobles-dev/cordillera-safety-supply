@@ -27,3 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Page layout with filter, posts and new post areas, following the wireframe.
 - Posts table loaded from the API once per view load, with loading, empty and error states and a retry action.
 - ADR 0004: async thunks instead of RTK Query.
+- Post form with character counters and a preview step before publishing.
+- Copy reuse warning that requires explicit confirmation when the copy is used by another product.
+- Duplicate post feedback when the API responds with 409.
+- Reusable modal based on the native dialog element.
