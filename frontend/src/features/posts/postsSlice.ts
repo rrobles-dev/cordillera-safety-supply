@@ -51,6 +51,17 @@ export const createPost = createAsyncThunk<Post, NewPost, { rejectValue: RejectV
   },
 );
 
+export const deletePost = createAsyncThunk<Post, number, { rejectValue: RejectValue }>(
+  'posts/delete',
+  async (id, { rejectWithValue }) => {
+    try {
+      return await apiRequest<Post>(`/posts/${id}`, { method: 'DELETE' });
+    } catch (err) {
+      return rejectWithValue(toRejectValue(err));
+    }
+  },
+);
+
 const postsAdapter = createEntityAdapter<Post>({
   sortComparer: (a, b) => b.createdAt.localeCompare(a.createdAt) || b.id - a.id,
 });
@@ -89,6 +100,16 @@ const postsSlice = createSlice({
       // The API returns the created post: add it to the store, no refetch
       .addCase(createPost.fulfilled, (state, action) => {
         postsAdapter.addOne(state, action.payload);
+      })
+      // The API returns the deleted post: remove it by the id it confirms
+      .addCase(deletePost.fulfilled, (state, action) => {
+        postsAdapter.removeOne(state, action.payload.id);
+      })
+      // Someone else already deleted it: keep the store in sync with the server
+      .addCase(deletePost.rejected, (state, action) => {
+        if (action.payload?.code === 'NOT_FOUND') {
+          postsAdapter.removeOne(state, action.meta.arg);
+        }
       });
   },
 });
