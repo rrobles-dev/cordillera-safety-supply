@@ -7,7 +7,7 @@ import { postsRouter } from './posts/posts.routes';
 
 export const app = express();
 
-app.use(cors({ origin: env.corsOrigin }));
+app.use(cors({ origin: env.corsOrigins }));
 app.use(express.json());
 
 app.get('/api/health', async (_req, res) => {
