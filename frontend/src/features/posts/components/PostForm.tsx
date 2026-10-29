@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { Modal } from '../../../components/Modal';
 import { findProductsUsingCopy } from '../postRules';
-import { createPost, selectAllPosts, type RejectValue } from '../postsSlice';
+import { createPost, filterChanged, selectAllPosts, type RejectValue } from '../postsSlice';
 
 const NAME_MAX = 50;
 const COPY_MAX = 250;
@@ -17,6 +17,7 @@ export function PostForm() {
   const [reuseConfirmed, setReuseConfirmed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [duplicateOf, setDuplicateOf] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
   const product = name.trim();
@@ -31,6 +32,7 @@ export function PostForm() {
     event.preventDefault();
     if (!isValid) return;
     setError(null);
+    setDuplicateOf(null);
     setSuccess(null);
     setReuseConfirmed(false);
     setPreviewOpen(true);
@@ -45,15 +47,22 @@ export function PostForm() {
       setSuccess(`Post for "${product}" created.`);
     } catch (err) {
       const { code, message } = err as RejectValue;
-      setError(
-        code === 'DUPLICATE_POST'
-          ? `A post for "${product}" with this copy already exists.`
-          : message,
-      );
+      if (code === 'DUPLICATE_POST') {
+        setError(`A post for "${product}" with this copy already exists.`);
+        setDuplicateOf(product);
+      } else {
+        setError(message);
+      }
     } finally {
       setSubmitting(false);
       setPreviewOpen(false);
     }
+  }
+
+  function handleShowExisting() {
+    if (!duplicateOf) return;
+    dispatch(filterChanged(duplicateOf));
+    document.getElementById('posts-title')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
@@ -91,6 +100,11 @@ export function PostForm() {
         {error && (
           <div className="alert" role="alert">
             <p>{error}</p>
+            {duplicateOf && (
+              <button type="button" className="btn-secondary" onClick={handleShowExisting}>
+                Show existing post
+              </button>
+            )}
           </div>
         )}
         {success && <p className="success" role="status">{success}</p>}
