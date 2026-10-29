@@ -25,3 +25,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Posts slice skeleton with entity adapter sorted newest first.
 - API client that maps HTTP and network failures to typed errors.
 - Page layout with filter, posts and new post areas, following the wireframe.
+- Posts table loaded from the API once per view load, with loading, empty and error states and a retry action.
+- ADR 0004: async thunks instead of RTK Query.
