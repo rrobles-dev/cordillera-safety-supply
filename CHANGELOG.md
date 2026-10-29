@@ -21,3 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Centralized error handler with consistent JSON errors; no stack traces exposed.
 - Integration tests with Vitest and supertest against a dedicated Neon test branch.
 - API reference in `docs/api.md`.
+- Frontend scaffold with Vite, React 19, TypeScript and Redux Toolkit.
+- Posts slice skeleton with entity adapter sorted newest first.
+- API client that maps HTTP and network failures to typed errors.
+- Page layout with filter, posts and new post areas, following the wireframe.
