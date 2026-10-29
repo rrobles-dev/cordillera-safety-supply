@@ -1,3 +1,5 @@
+import { PostTable } from "./features/posts/components/PostTable";
+
 export default function App() {
   return (
     <div className="page">
@@ -15,7 +17,7 @@ export default function App() {
 
         <section className="card" aria-labelledby="posts-title">
           <h2 id="posts-title">Posts</h2>
-          <p className="placeholder">Posts table. Coming next.</p>
+          <PostTable />
         </section>
 
         <section className="card" aria-labelledby="new-post-title">
