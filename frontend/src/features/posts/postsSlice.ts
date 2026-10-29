@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 import { ApiError, apiRequest } from '../../api/client';
 import type { RootState } from '../../app/store';
-import type { Post } from './types';
+import type { NewPost, Post } from './types';
 
 export type RequestStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
 export type RejectValue = { code: string; message: string };
@@ -34,6 +34,20 @@ export const fetchPosts = createAsyncThunk<
     // Challenge rule: the full list is requested once per view load.
     // Also prevents the duplicate request caused by StrictMode running effects twice.
     condition: (_, { getState }) => getState().posts.status === 'idle',
+  },
+);
+
+export const createPost = createAsyncThunk<Post, NewPost, { rejectValue: RejectValue }>(
+  'posts/create',
+  async (newPost, { rejectWithValue }) => {
+    try {
+      return await apiRequest<Post>('/posts', {
+        method: 'POST',
+        body: JSON.stringify(newPost),
+      });
+    } catch (err) {
+      return rejectWithValue(toRejectValue(err));
+    }
   },
 );
 
@@ -71,6 +85,10 @@ const postsSlice = createSlice({
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload?.message ?? 'Could not load posts';
+      })
+      // The API returns the created post: add it to the store, no refetch
+      .addCase(createPost.fulfilled, (state, action) => {
+        postsAdapter.addOne(state, action.payload);
       });
   },
 });
