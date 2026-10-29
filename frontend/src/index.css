@@ -245,3 +245,26 @@ textarea {
 .checkbox input {
   width: auto;
 }
+
+.btn-danger {
+  background: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+.feedback {
+  margin: 0 0 12px;
+}
+
+.error-text {
+  color: var(--color-danger);
+}
+
+.confirm-text {
+  margin: 0;
+}
