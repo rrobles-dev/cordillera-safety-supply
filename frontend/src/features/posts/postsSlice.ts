@@ -1,6 +1,7 @@
 import {
   createAsyncThunk,
   createEntityAdapter,
+  createSelector,
   createSlice,
   type PayloadAction,
 } from '@reduxjs/toolkit';
@@ -122,3 +123,11 @@ export const { selectAll: selectAllPosts } = postsAdapter.getSelectors<RootState
 );
 export const selectPostsStatus = (state: RootState) => state.posts.status;
 export const selectPostsError = (state: RootState) => state.posts.error;
+export const selectFilter = (state: RootState) => state.posts.filter;
+export const selectFilteredPosts = createSelector(
+  [selectAllPosts, selectFilter],
+  (posts, filter) => {
+    const term = filter.trim().toLowerCase();
+    return term ? posts.filter((post) => post.name.toLowerCase().includes(term)) : posts;
+  },
+);

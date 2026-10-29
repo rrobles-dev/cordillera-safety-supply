@@ -268,3 +268,25 @@ textarea {
 .confirm-text {
   margin: 0;
 }
+
+.filter label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-row input {
+  flex: 1;
+}
+
+.empty-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}

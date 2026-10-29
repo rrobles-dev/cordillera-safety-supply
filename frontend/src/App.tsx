@@ -1,5 +1,6 @@
 import { PostTable } from "./features/posts/components/PostTable";
 import { PostForm } from './features/posts/components/PostForm';
+import { PostFilter } from './features/posts/components/PostFilter';
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
       <main className="layout">
         <section className="card" aria-labelledby="filter-title">
           <h2 id="filter-title">Filter</h2>
-          <p className="placeholder">Filter by product. Coming next.</p>
+          <PostFilter />
         </section>
 
         <section className="card" aria-labelledby="posts-title">
