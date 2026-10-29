@@ -1,4 +1,5 @@
 import { PostTable } from "./features/posts/components/PostTable";
+import { PostForm } from './features/posts/components/PostForm';
 
 export default function App() {
   return (
@@ -22,7 +23,7 @@ export default function App() {
 
         <section className="card" aria-labelledby="new-post-title">
           <h2 id="new-post-title">New post</h2>
-          <p className="placeholder">Create form. Coming next.</p>
+          <PostForm />
         </section>
       </main>
     </div>
