@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-29
+
 ### Added
 
 - Repository structure, README, changelog and pull request template.
@@ -42,3 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - CORS accepts a comma-separated list of allowed origins, so local development and the deployed frontend can both reach the API.
+
+[Unreleased]: https://github.com/rrobles-dev/cordillera-safety-supply/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/rrobles-dev/cordillera-safety-supply/releases/tag/v1.0.0
