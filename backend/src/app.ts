@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { env } from './config/env';
 import { pool } from './db/pool';
+import { errorHandler, notFound } from './middlewares/error-handler';
+import { postsRouter } from './posts/posts.routes';
 
 export const app = express();
 
@@ -12,3 +14,8 @@ app.get('/api/health', async (_req, res) => {
   await pool.query('SELECT 1');
   res.json({ status: 'ok' });
 });
+
+app.use('/api/posts', postsRouter);
+
+app.use(notFound);
+app.use(errorHandler);
