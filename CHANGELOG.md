@@ -11,3 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Repository structure, README, changelog and pull request template.
 - ADR 0001: marketing posts as the product domain.
+- Express + TypeScript API with environment validation and health check endpoint.
+- PostgreSQL connection pool (Neon).
+- `posts` table migration and case-insensitive duplicate index on product + copy.
+- Idempotent seed with sample marketing posts.
+- ADR 0002 (Express and pg without an ORM) and ADR 0003 (Neon for hosting).
