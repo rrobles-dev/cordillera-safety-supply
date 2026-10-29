@@ -31,3 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Copy reuse warning that requires explicit confirmation when the copy is used by another product.
 - Duplicate post feedback when the API responds with 409.
 - Reusable modal based on the native dialog element.
+- Delete action per post with a confirmation modal that focuses Cancel by default.
+- Posts already deleted by someone else are removed from the view when the API responds with 404.
